@@ -1,4 +1,4 @@
-package transport;
+package transport.types;
 
 public enum LoadCapacity {
     N1(3.5),

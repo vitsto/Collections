@@ -1,4 +1,4 @@
-package transport;
+package transport.types;
 
 public enum Capacity {
     EXTRA_SMALL(10),

@@ -1,6 +1,7 @@
-package transport;
+package exceptions;
 
 import license.License;
+import transport.service.Driver;
 
 public class IllegalDiagnosticException extends Exception{
     private Driver<? extends License> driver;
