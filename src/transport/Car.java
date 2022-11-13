@@ -1,17 +1,29 @@
 package transport;
 
+import exceptions.IllegalDiagnosticException;
 import fuel.Diesel;
 import fuel.Electricity;
 import fuel.Fuel;
 import fuel.Petrol;
+import transport.service.Mechanic;
+import transport.types.BodyType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class Car extends Transport implements Competing {
+public class Car extends Transport implements Competing, Diagnosable {
     private final BodyType bodyType;
+    private final List<Mechanic<? super Car>> mechanics;
 
     public Car(String brand, String model, double engineVolume, BodyType bodyType) {
         super(brand, model, engineVolume);
         this.bodyType = bodyType;
+        this.mechanics = new ArrayList<>();
+    }
+
+    public List<Mechanic<? super Car>> getMechanics() {
+        return mechanics;
     }
 
     @Override
@@ -29,7 +41,7 @@ public class Car extends Transport implements Competing {
 
     @Override
     public boolean runDiagnostics() throws IllegalDiagnosticException {
-        if (getDriver().getLicense() == null) {
+        if (getDriver() == null || getDriver().getLicense() == null) {
             throw new IllegalDiagnosticException("Необходимо указать тип прав!", getDriver());
         }
         return true;

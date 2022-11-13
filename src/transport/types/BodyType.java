@@ -1,4 +1,6 @@
-package transport;
+package transport.types;
+
+import transport.Transport;
 
 public enum BodyType {
     SEDAN("седан"),

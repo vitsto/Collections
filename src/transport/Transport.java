@@ -1,9 +1,14 @@
 package transport;
 
+import exceptions.IllegalDiagnosticException;
 import fuel.Fuel;
 import license.License;
+import sponsors.Contributor;
+import transport.service.Driver;
 import utilits.Util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Transport {
@@ -12,11 +17,13 @@ public abstract class Transport {
     private Fuel fuel;
     private double engineVolume;
     private Driver<? extends License> driver;
+    private final List<Contributor> contributors;
 
     public Transport(String brand, String model, double engineVolume) {
         this.brand = Util.isDefine(brand) ? brand : "undefined";
         this.model = Util.isDefine(model) ? model : "undefined";
         this.engineVolume = engineVolume == 0 ? 1.5 : engineVolume;
+        this.contributors = new ArrayList<>();
     }
 
     public void setEngineVolume(double engineVolume) {
@@ -50,6 +57,10 @@ public abstract class Transport {
         return driver;
     }
 
+    public List<Contributor> getContributors() {
+        return contributors;
+    }
+
     public void start() {
         System.out.println(getBrand() + " " + getModel() + " начал движение");
     }
@@ -66,8 +77,6 @@ public abstract class Transport {
     }
 
     public abstract Fuel[] getAllowedFuels();
-
-    public abstract boolean runDiagnostics() throws IllegalDiagnosticException;
 
     @Override
     public String toString() {

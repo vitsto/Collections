@@ -1,10 +1,15 @@
 import exceptions.CheckAuthorization;
+import exceptions.IllegalDiagnosticException;
 import exceptions.WrongLoginException;
 import exceptions.WrongPasswordException;
 import license.LicenseB;
 import license.LicenseC;
 import license.LicenseD;
 import transport.*;
+import transport.types.BodyType;
+import transport.types.Capacity;
+import transport.service.Driver;
+import transport.types.LoadCapacity;
 
 public class Main {
     public static void main(String[] args) {
@@ -64,8 +69,7 @@ public class Main {
         petrov.setLicense(null);
         try {
             System.out.println("Диагностика машины " + car1 + ": " + car1.runDiagnostics());
-            System.out.println("Диагностика автобуса " + bus1 + ": " + bus1.runDiagnostics());
-            System.out.println("Диагностика грузовика " + truck1 + ": " + truck1.runDiagnostics());
+            System.out.println("Диагностика грузовика " + truck4 + ": " + truck1.runDiagnostics());
 
         } catch (IllegalDiagnosticException e) {
             System.out.println(e.getMessage() + " y " + e.getDriver());

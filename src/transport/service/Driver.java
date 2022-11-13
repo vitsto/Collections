@@ -1,6 +1,7 @@
-package transport;
+package transport.service;
 
 import license.License;
+import transport.Transport;
 
 public class Driver<T extends License> {
     private final String fullName;
