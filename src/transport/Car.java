@@ -41,15 +41,9 @@ public class Car extends Transport implements Competing, Diagnosable {
 
     @Override
     public boolean runDiagnostics() throws IllegalDiagnosticException {
-        try {
-            if (getDriver().getLicense() == null) {
-                throw new IllegalDiagnosticException("Необходимо указать тип прав!", getDriver());
-            }
-        } catch (NullPointerException exception) {
-            System.out.println("Водитель не определен для " + this);
-            return false;
+        if (getDriver() == null || getDriver().getLicense() == null) {
+            throw new IllegalDiagnosticException("Необходимо указать тип прав!", getDriver());
         }
-
         return true;
     }
 
