@@ -3,6 +3,8 @@ package transport.service;
 import license.License;
 import transport.Transport;
 
+import java.util.Objects;
+
 public class Driver<T extends License> {
     private final String fullName;
     private T license;
@@ -53,5 +55,18 @@ public class Driver<T extends License> {
     @Override
     public String toString() {
         return "Водитель " + getFullName() + " управляет транспортом " + transport;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver<?> driver = (Driver<?>) o;
+        return experience == driver.experience && Objects.equals(fullName, driver.fullName) && Objects.equals(license, driver.license) && Objects.equals(transport, driver.transport);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, license, experience, transport);
     }
 }

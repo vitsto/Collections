@@ -1,5 +1,7 @@
 package sponsors;
 
+import java.util.Objects;
+
 public class LegalEntity extends Contributor{
     private final String companyTitle;
 
@@ -16,5 +18,18 @@ public class LegalEntity extends Contributor{
     @Override
     public String toString() {
         return "Юридическое лицо: " + companyTitle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LegalEntity that = (LegalEntity) o;
+        return Objects.equals(companyTitle, that.companyTitle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(companyTitle);
     }
 }
