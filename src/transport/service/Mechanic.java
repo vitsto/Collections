@@ -4,6 +4,7 @@ import transport.Transport;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Mechanic<T extends Transport> {
     private final String fullName;
@@ -37,5 +38,18 @@ public class Mechanic<T extends Transport> {
     @Override
     public String toString() {
         return "Имя: " + getFullName() + ", компания: " + getCompany();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mechanic<?> mechanic = (Mechanic<?>) o;
+        return Objects.equals(fullName, mechanic.fullName) && Objects.equals(company, mechanic.company);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, company);
     }
 }
